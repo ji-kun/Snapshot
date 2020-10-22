@@ -1,32 +1,26 @@
 import React, { Component } from 'react';
 import Identicon from 'identicon.js';
 import photo from '../photo.png'
+import './App.css'
 
 class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a
-          className="navbar-brand col-sm-3 col-md-2 mr-0"
-          href="http://www.dappuniversity.com/bootcamp"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      <nav className="navbar navigator">
           <img src={photo} width="30" height="30" className="d-inline-block align-top" alt="" />
-          Decentragram
-        </a>
+          <h1 className="Snapshoit">Snapshot</h1>
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
             <small className="text-secondary">
-              <small id="account">{'0x0'}</small>
+              <small id="account">{this.props.account}</small>
             </small>
             { this.props.account
               ? <img
-                className='ml-2'
-                width='30'
-                height='30'
-                src={`data:image/png;base64,${new Identicon(this.props.account, 30).toString()}`}
+                className='ml-3'
+                width='40'
+                height='40'
+                src={`data:image/png;base64,${new Identicon(this.props.account, 40).toString()}`}
               />
               : <span></span>
             }
