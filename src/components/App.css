@@ -12,22 +12,15 @@
     background: #1f1f1f;
     z-index: 2;
     box-shadow: #1f1f1f;
+    font-weight: 600;
+}
+.Snapshot{
+    color: rgb(20, 255, 138);
+    font-weight: 600;
+    letter-spacing: 0.5em;
 }
 .Snapshoit{
     color: rgb(20, 255, 138);
-}
-.post{
-
-}
-.allContent{
-
-}
-
-.formStyles{
-
-}
-.formStyling{
-    
 }
 .litem{
     list-style: none;
@@ -35,7 +28,14 @@
 .ulitem{
 
 }
-
+.choosefile{
+    width: 100%;
+    display: flex;
+    justify-content: center ;
+    align-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
 .hover :hover{
     transform: scale(1.1);
     transition: all ease 0.2s;

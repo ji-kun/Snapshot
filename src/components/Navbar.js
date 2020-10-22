@@ -9,7 +9,7 @@ class Navbar extends Component {
     return (
       <nav className="navbar navigator">
           <img src={photo} width="30" height="30" className="d-inline-block align-top" alt="" />
-          <h1 className="Snapshoit">Snapshot</h1>
+          <h1 className="Snapshot">SNAPSHOT!</h1>
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
             <small className="text-secondary">

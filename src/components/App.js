@@ -4,7 +4,7 @@ import Identicon from 'identicon.js';
 import './App.css';
 import Snapshot from '../abis/Decentragram.json';
 import Navbar from './Navbar';
-import Main from './Main';
+import Content from './Main';
 import Lottie from './Lottie';
 
 const ipfsClient = require('ipfs-http-client')
@@ -57,7 +57,7 @@ class App extends Component {
       }
 
       this.setState({
-        images: this.state.images.sort((a, b) => b.tipAmount - a.tipAmount)
+        images: this.state.images.sort((a,b) => b.tipAmount - a.tipAmount )
       })
 
       this.setState({
@@ -104,7 +104,7 @@ class App extends Component {
     this.setState({
       loading: true,
     })
-    this.state.snapshot.methods.tipImageOwner(id).send({ from: this.state.account }).on('transactionHash', (hash) => {
+    this.state.snapshot.methods.tipImageOwner(id).send({ from: this.state.account, value: tipAmount }).on('transactionHash', (hash) => {
       this.setState({
         loading: false
       })
@@ -128,7 +128,7 @@ class App extends Component {
         <Navbar account={this.state.account} />
         { this.state.loading
           ? <Lottie />
-          : <Main
+          : <Content
             images = {this.state.images}
             captureFile = {this.captureFile}
             uploadImage={this.uploadImage}

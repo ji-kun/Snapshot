@@ -12,7 +12,7 @@ class Main extends Component {
           <main role="main" className="col-lg-12 ml-auto mr-auto post" style={{ maxWidth: '500px' }}>
             <div className="content mr-auto ml-auto allContent formStyles">
               <p>&nbsp;</p>
-              <h2>Add a photo</h2>
+              <h2>Add your Picture</h2>
               <form onSubmit={(event) => {
                 event.preventDefault()
                 const description = this.imageDescription.value
