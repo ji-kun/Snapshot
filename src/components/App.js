@@ -82,6 +82,17 @@ class App extends Component {
     }
   }
 
+  // sharePost = (description, prevAuthor) => {
+  //   this.setState({
+  //     loading: true,
+  //   })
+  //   this.state.snapshot.methods.sharePost(description, prevAuthor).send({ from: this.state.account }).on('transactionHash', (hash) => {
+  //     this.setState({
+  //       loading: false
+  //     })
+  //   })
+  // }
+
   uploadImage = (description) => {
     //ipfs
     ipfs.add(this.state.buffer, (error, result) => {
@@ -96,6 +107,17 @@ class App extends Component {
         this.setState({
           loading: false
         })
+      })
+    })
+  }
+
+  uploadComment = (comment) => {
+    this.setState({
+      loading: true
+    })
+    this.state.snapshot.methods.uploadComment(comment).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.setState({
+        loading: false
       })
     })
   }
@@ -133,6 +155,8 @@ class App extends Component {
             captureFile = {this.captureFile}
             uploadImage={this.uploadImage}
             tipImageOwner = {this.tipImageOwner}
+            //sharePost = {this.sharePost}
+            uploadComment = { this.uploadComment }
             />
           }
       </div>

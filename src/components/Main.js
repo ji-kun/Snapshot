@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Identicon from 'identicon.js';
 import './App.css'
 import tip from '../../src/ethereum.png';
+import share from '../../src/share.png';
 
 class Main extends Component {
 
@@ -9,7 +10,7 @@ class Main extends Component {
     return (
       <div className="container-fluid mt-5">
         <div className="row">
-          <main role="main" className="col-lg-12 ml-auto mr-auto post" style={{ maxWidth: '500px' }}>
+          <main role="main" className="col-lg-12 ml-auto mr-auto post" style={{ maxWidth: '600px' }}>
             <div className="content mr-auto ml-auto allContent formStyles">
               <p>&nbsp;</p>
               <h2>Add your Picture</h2>
@@ -47,13 +48,25 @@ class Main extends Component {
                       </div>
                       <ul id="imageList" className="ulitem">
                         <li className="litem">
-                          <p className=""><img src={`https://ipfs.infura.io/ipfs/${image.hash}`} style={{ maxWidth: '420px'}}/></p>
+                          <p className=""><img src={`https://ipfs.infura.io/ipfs/${image.hash}`} style={{ maxWidth: '520px'}}/></p>
                           <p>{image.description}</p>
                         </li>
                         <li key={key} className="litem">
                           <small className="float-left mt-1 text-muted">
                             REACH: {window.web3.utils.fromWei(image.tipAmount.toString(), 'Ether')} ETH
                           </small>
+
+                          <button
+                            className="btn btn-link btn-sm float-right pt-0  Snapshoit"
+                            name={image.id}
+                            // onClick={(event) => {
+                            //   this.props.sharePost(description, image.author)
+                            // }}
+                          >
+                            <img src = {share} className="tip" />
+                            SHARE
+                          </button>
+                          
                           <button
                             className="btn btn-link btn-sm float-right pt-0  Snapshoit"
                             name={image.id}
@@ -67,6 +80,28 @@ class Main extends Component {
                             TIP 0.1 ETH
                           </button>
                           <br />
+                          <form onSubmit={(event) => {
+                            event.preventDefault()
+                            const comment = this.inputComment.value
+                            this.props.uploadComment(comment)
+                          }} >
+                              <div className="">
+                                <br></br>
+                                  <input
+                                    id="inputComment"
+                                    type="text"
+                                    ref={(input) => { this.inputComment = input }}
+                                    className="form-control"
+                                    placeholder="Add a comment to this post"
+                                    required />
+                              </div>
+                            <button type="submit" className="hover btn comment btn-block btn-lg mt-2 pt-0">Comment</button>
+                          </form>
+                          {(comment) => {
+                            return(
+                              <p>hello</p>
+                            )
+                          }}
                           <br />
                         </li>
                       </ul>
