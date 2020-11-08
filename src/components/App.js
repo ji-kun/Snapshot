@@ -37,6 +37,9 @@ class App extends Component {
     this.setState({
        account: accounts[0] 
     })
+    const chainId = await web3.eth.getChainId();
+    console.log(chainId);
+  
     const nid = await web3.eth.net.getId()
     const netData = Snapshot.networks[nid]
     if(netData){
@@ -139,7 +142,8 @@ class App extends Component {
       account: '',
       snapshot: null,
       images: [],
-      loading: true
+      loading: true,
+      comment: ''
     }
 
   }
@@ -156,6 +160,8 @@ class App extends Component {
             uploadImage={this.uploadImage}
             tipImageOwner = {this.tipImageOwner}
             //sharePost = {this.sharePost}
+            comment = {this.comment}
+            account = {this.state.account}
             uploadComment = { this.uploadComment }
             />
           }

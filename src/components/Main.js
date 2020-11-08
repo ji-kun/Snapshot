@@ -5,7 +5,13 @@ import tip from '../../src/ethereum.png';
 import share from '../../src/share.png';
 
 class Main extends Component {
-
+  constructor(props){
+    super(props)
+    this.state = {
+      comments: [],
+      input: ''
+    }
+  }
   render() {
     return (
       <div className="container-fluid mt-5">
@@ -82,26 +88,45 @@ class Main extends Component {
                           <br />
                           <form onSubmit={(event) => {
                             event.preventDefault()
-                            const comment = this.inputComment.value
-                            this.props.uploadComment(comment)
+                            this.setState({
+                              comments: [this.state.input, ...this.state.comments],
+                              input: ''
+                            })
                           }} >
                               <div className="">
                                 <br></br>
                                   <input
                                     id="inputComment"
                                     type="text"
-                                    ref={(input) => { this.inputComment = input }}
+                                    value={this.state.input}
+                                    onChange={(e) => this.setState({
+                                      input: e.target.value
+                                    })} 
                                     className="form-control"
                                     placeholder="Add a comment to this post"
                                     required />
                               </div>
                             <button type="submit" className="hover btn comment btn-block btn-lg mt-2 pt-0">Comment</button>
                           </form>
-                          {(comment) => {
-                            return(
-                              <p>hello</p>
-                            )
-                          }}
+                          { (this.state.comments.length > 0)
+                            ?this.state.comments.map((c) => (
+                              <div> 
+                                <span>
+                                    <img
+                                      className='ml-3'
+                                      width='40'
+                                      height='40'
+                                      src={`data:image/png;base64,${new Identicon(this.props.account, 30).toString()}`}
+                                    />
+                                    <small className="">
+                                      <small>{this.props.account}</small>
+                                    </small>
+                                    </span>
+                                  <p className="spacer">{c}</p>
+                                </div>
+                            ))   
+                            : <span></span>
+                          }
                           <br />
                         </li>
                       </ul>
